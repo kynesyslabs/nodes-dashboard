@@ -20,6 +20,7 @@ export async function checkNodeStatus(url: string): Promise<NodeStatusResult> {
   
   try {
     const controller = new AbortController();
+    // Use standard setTimeout instead of timers/promises
     const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
     
     // Append /info to the URL if it doesn't already end with it
