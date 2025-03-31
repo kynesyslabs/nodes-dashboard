@@ -1,0 +1,258 @@
+:root {
+  --bg-color: #0f0f13;
+  --card-bg: #1a1a23;
+  --text-color: #e6e6e6;
+  --accent-color: #6366f1;
+  --online-color: #10b981;
+  --offline-color: #ef4444;
+  --border-color: #2d2d3a;
+  --hover-color: #2a2a38;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(90deg, var(--accent-color), #8b5cf6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.last-updated {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.network-section {
+  margin-bottom: 3rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.nodes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.node-card {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid var(--border-color);
+}
+
+.node-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+  background-color: var(--hover-color);
+}
+
+.node-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.node-header h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.status-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status-online .status-indicator {
+  background-color: var(--online-color);
+  box-shadow: 0 0 10px var(--online-color);
+}
+
+.status-offline .status-indicator {
+  background-color: var(--offline-color);
+  box-shadow: 0 0 10px var(--offline-color);
+}
+
+.node-details {
+  font-size: 0.9rem;
+}
+
+.node-url {
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 0.5rem;
+  word-break: break-all;
+}
+
+.node-status {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.status-online .node-status {
+  color: var(--online-color);
+}
+
+.status-offline .node-status {
+  color: var(--offline-color);
+}
+
+.node-response-time {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+footer {
+  text-align: center;
+  margin-top: 3rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  .nodes-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.node-info {
+  margin-top: 0.8rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.node-version {
+  color: var(--accent-color);
+  font-size: 0.85rem;
+  margin-bottom: 0.3rem;
+}
+
+.node-identity-container {
+  display: flex;
+  align-items: flex-start;
+  font-family: monospace;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 0.3rem;
+  flex-wrap: wrap;
+}
+
+.node-identity-label {
+  margin-right: 0.5rem;
+  margin-top: 2px;
+}
+
+.node-identity-value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  flex: 1;
+  min-width: 0;
+}
+
+.node-identity-value.collapsed {
+  max-width: 80px;
+}
+
+.node-identity-value.expanded {
+  max-width: none;
+  white-space: normal;
+  word-break: break-all;
+}
+
+.toggle-identity {
+  background: none;
+  border: none;
+  color: var(--accent-color);
+  cursor: pointer;
+  font-size: 0.85rem;
+  margin-left: 0.5rem;
+  padding: 0 0.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: rgba(99, 102, 241, 0.1);
+  margin-top: 2px;
+}
+
+.toggle-identity:hover {
+  background-color: rgba(99, 102, 241, 0.2);
+}
+
+.copy-feedback {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+
+.copy-feedback.visible {
+  opacity: 1;
+}
+
+.node-name {
+  cursor: pointer;
+  position: relative;
+}
+
+.node-name:hover {
+  text-decoration: underline;
+  color: var(--accent-color);
+} 
