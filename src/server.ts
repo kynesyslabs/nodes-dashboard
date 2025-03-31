@@ -6,12 +6,18 @@ import { config } from './config';
 import { renderDashboard } from './templates/dashboard';
 import { checkNodeStatus } from './services/nodeChecker';
 
+// Determine the base directory for static files
+const isProduction = process.env.NODE_ENV === 'production';
+const baseDir = isProduction 
+  ? join(import.meta.dir, 'public') 
+  : join(import.meta.dir, 'public');
+
 // Initialize the server
 const app = new Elysia()
   .use(html())
   .get('/styles.css', () => {
     return new Response(
-      readFileSync(join(import.meta.dir, 'public', 'styles.css'), 'utf-8'),
+      readFileSync(join(baseDir, 'styles.css'), 'utf-8'),
       {
         headers: {
           'Content-Type': 'text/css',
@@ -21,7 +27,7 @@ const app = new Elysia()
   })
   .get('/script.js', () => {
     return new Response(
-      readFileSync(join(import.meta.dir, 'public', 'script.js'), 'utf-8'),
+      readFileSync(join(baseDir, 'script.js'), 'utf-8'),
       {
         headers: {
           'Content-Type': 'application/javascript',
